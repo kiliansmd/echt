@@ -1,0 +1,3 @@
+"use client";
+import Link from "next/link";import {Gamepad2,Users,Trophy,UserRound} from "lucide-react";import {usePathname} from "next/navigation";import type {Locale} from "@/lib/i18n";import {getDictionary} from "@/lib/i18n";
+export function BottomNav({locale}:{locale:Locale}){const p=usePathname(),t=getDictionary(locale);const links=[["play",t.navigation.play,Gamepad2],["friends",t.navigation.friends,Users],["ranking",t.navigation.ranking,Trophy],["profile",t.navigation.profile,UserRound]] as const;return <nav className="nav" aria-label="Primary">{links.map(([href,label,Icon])=><Link className={p.includes(`/${href}`)?"active":""} href={`/${locale}/${href}`} key={href}><Icon size={21}/><span>{label}</span></Link>)}</nav>}
